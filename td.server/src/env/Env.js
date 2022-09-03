@@ -105,7 +105,7 @@ export class Env {
             if (!value && required) {
                 const errMsg = `${prop} is a required property, Threat Dragon server cannot start without it. Please see docs env.md for more information`;
                 console.error(errMsg);
-                logger.error(errorMessage);
+                logger.error(errMsg);
                 throw new Error(errMsg);
             }
             config[prop] = value;
