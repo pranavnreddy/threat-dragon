@@ -4,6 +4,11 @@ import path from 'path';
 
 import { upDir } from '../helpers/path.helper.js';
 
+import loggerHelper from '../helpers/logger.helper.js';
+
+
+const logger = loggerHelper.get('env/env.js');
+
 export class Env {
     /* eslint no-console: 0 */
 
@@ -36,6 +41,7 @@ export class Env {
     get properties() {
         const errorMessage = 'When creating a new Env configuration class, you must override the getter for properties.  See GithubEnv for an example.';
         console.error(errorMessage);
+        logger.error(errorMessage);
         throw new Error(errorMessage);
     }
 
@@ -47,6 +53,7 @@ export class Env {
     get prefix() {
         const errorMessage = 'When creating a new Env configuration class, you must override the getter for prefix.  See GithubEnv for an example.';
         console.error(errorMessage);
+        logger.error(errorMessage);
         throw new Error(errorMessage);
     }
 
@@ -75,6 +82,7 @@ export class Env {
             if (!fs.existsSync(filePath)) {
                 const errorMessage = `${propertyName} was set, but file ${filePath} does not exist.`;
                 console.error(errorMessage);
+                logger.error(errorMessage);
                 throw new Error(errorMessage);
             }
 
@@ -97,6 +105,7 @@ export class Env {
             if (!value && required) {
                 const errMsg = `${prop} is a required property, Threat Dragon server cannot start without it. Please see docs env.md for more information`;
                 console.error(errMsg);
+                logger.error(errorMessage);
                 throw new Error(errMsg);
             }
             config[prop] = value;
@@ -122,8 +131,10 @@ export class Env {
                 path: envFilePath
             });
             console.log(`Using config file: ${envFilePath}`);
+            logger.info(`Using config file: ${envFilePath}`);
         } else {
             console.log(`Unable to find .env file, falling back to environment variables`);
+            logger.warn(`Unable to find .env file, falling back to environment variables`);
         }
     }
 }

@@ -1,9 +1,9 @@
 // healthcheck is called periodically from within the docker container
 
 import env from 'env/Env.js';
-import loggerHelper from 'helpers/logger.helper.js';
+import loggerHelper from '../helpers/logger.helper.js';
 
-const logger = loggerHelper.get('healthcheck.js');
+const logger = loggerHelper.get('repositories/healthcheck.js');
 const http = require('http');
 
 const req = (env.get().config.SERVER_API_PROTOCOL || 'https') + '://localhost:' + (env.get().config.PORT || '3000') + '/healthz';
