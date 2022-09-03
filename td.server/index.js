@@ -1,4 +1,4 @@
-import loggerHelper from 'src/helpers/logger.helper.js';
+import loggerHelper from './src/helpers/logger.helper.js';
 
 const logger = loggerHelper.get('../index.js');
 
